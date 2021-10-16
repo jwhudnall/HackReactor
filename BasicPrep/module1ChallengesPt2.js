@@ -89,3 +89,63 @@ function doubleSquareRootOf(num) {
     const sqrt = Math.sqrt(num);
     return sqrt * 2;
 }
+
+// String Methods 3
+function getLengthOfThreeWords(word1, word2, word3) {
+    return word1.length + word2.length + word3.length;
+}
+
+// Array Methods 3
+function joinArrays(arr1, arr2) {
+    return arr1.concat(arr2);
+}
+
+function getElementsAfter(array, n) {
+    return array.slice(n + 1);
+}
+
+function getElementsUpTo(array, n) {
+    return array.slice(0, n);
+}
+
+// Array Methods 4
+function getAllElementsButFirst(array) {
+    array.shift();
+    return array;
+}
+
+function getAllElementsButLast(array) {
+    array.pop();
+    return array;
+}
+
+function removeFromFront(arr) {
+    arr.shift();
+    return arr;
+}
+
+// Array Methods 5
+function removeFromBackOfNew(arr) {
+    lenOfArray = arr.length;
+    return arr.slice(0, lenOfArray - 1);
+}
+
+function removeFromFrontOfNew(arr) {
+    return arr.slice(1);
+}
+
+function countCharacter(str, char) {
+    let count = 0;
+    for (letter of str) {
+        if (letter === char) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Array Methods 6
+function removeFromBack(arr) {
+    arr.pop();
+    return arr;
+}
