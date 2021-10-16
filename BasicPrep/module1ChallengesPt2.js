@@ -46,3 +46,46 @@ function addToFront(arr, element) {
     arr.unshift(element);
     return arr;
 }
+
+// Math 2
+function computeAreaOfARectangle(length, width) {
+    return length * width;
+}
+
+function computePerimeterOfARectangle(length, width) {
+    return length * 2 + width * 2;
+}
+
+function computePerimeterOfATriangle(side1, side2, side3) {
+    return side1 + side2 + side3;
+}
+
+// Math 3
+function computeTripledAreaOfARectangle(length, width) {
+    const area = length * width;
+    return area * 3;
+}
+
+function computePerimeterOfACircle(radius) {
+    // 2 * pi * r = circumference
+    return 2 * Math.PI * radius;
+}
+
+function computeAreaOfACircle(radius) {
+    // area = pi * r ** 2
+    return Math.PI * radius ** 2;
+}
+
+// Math 4
+function computePower(num, exponent) {
+    return num ** exponent;
+}
+
+function computeSquareRoot(num) {
+    return Math.sqrt(num);
+}
+
+function doubleSquareRootOf(num) {
+    const sqrt = Math.sqrt(num);
+    return sqrt * 2;
+}
