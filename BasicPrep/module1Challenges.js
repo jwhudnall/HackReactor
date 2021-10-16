@@ -16,3 +16,15 @@ function isOldEnoughToDrink(age) {
     return false;
   }
 
+// Objects 1
+function getProperty(obj, key) {
+    return obj[key];
+  }
+
+  function addProperty(obj, key) {
+    obj[key] = true;
+  }
+
+  function removeProperty(obj, key) {
+    delete obj[key];
+  }
