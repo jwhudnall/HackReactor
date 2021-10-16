@@ -80,6 +80,7 @@ function isEven(num) {
     return num % 2 === 0;
 }
 
+// Conditionals 4
 function isOdd(num) {
     return num % 2 === 1;
 }
@@ -94,4 +95,19 @@ function areBothOdd(num1, num2) {
 
 function isEitherEven(num1, num2) {
     return num1 % 2 === 0 || num2 % 2 === 0;
+}
+
+// Conditionals 5
+function isOddLength(word) {
+    return word.length % 2 === 1;
+}
+
+function isEvenLength(word) {
+    return word.length % 2 === 0;
+}
+
+function isEvenAndGreaterThanTen(num) {
+    const isEven = num % 2 === 0;
+    const greaterThan10 = num > 10;
+    return isEven && greaterThan10;
 }
