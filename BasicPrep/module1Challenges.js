@@ -111,3 +111,28 @@ function isEvenAndGreaterThanTen(num) {
     const greaterThan10 = num > 10;
     return isEven && greaterThan10;
 }
+
+// Math 1
+function average(num1, num2) {
+    const sum = num1 + num2;
+    return sum / 2;
+}
+
+function computeAreaOfATriangle(base, height) {
+    const triangleArea = .5 * (base * height);
+    return triangleArea;
+}
+
+function cube(num) {
+    return num ** 3;
+}
+
+function square(num) {
+    return num ** 2;
+}
+
+// String Methods 2
+function computeAverageLengthOfWords(word1, word2) {
+    const totalLength = word1.length + word2.length;
+    return totalLength / 2;
+}
