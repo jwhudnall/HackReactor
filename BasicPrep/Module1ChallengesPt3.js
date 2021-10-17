@@ -64,3 +64,53 @@ function extend(obj1, obj2) {
 }
 
 // Objects 6
+function removeArrayValues(obj) {
+    // iterate through obj
+    // if typeof property is array, remove
+    for (let key in obj) {
+        if (Array.isArray(obj[key])) {
+            delete obj[key];
+        }
+    }
+}
+
+function removeNumberValues(obj) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'number') {
+            delete obj[key];
+        }
+    }
+}
+
+function removeStringValues(obj) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'string') {
+            delete obj[key];
+        }
+    }
+}
+
+// Objects 4
+function removeNumbersLargerThan(num, obj) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'number' && obj[key] > num) {
+            delete obj[key];
+        }
+    }
+}
+
+function removeNumbersLessThan(num, obj) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'number' && obj[key] < num) {
+            delete obj[key];
+        }
+    }
+}
+
+function removeStringValuesLongerThan(num, obj) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'string' && obj[key].length > num) {
+            delete obj[key];
+        }
+    }
+}
