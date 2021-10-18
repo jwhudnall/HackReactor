@@ -242,6 +242,43 @@ function computeAverageOfNumbers(nums) {
 }
 
 // Objects 9
+function getOddLengthWordsAtProperty(obj, key) {
+    if (!Array.isArray(obj[key]) || obj[key] === undefined) {
+        return [];
+    }
+    const oddWordsArr = [];
+    for (let i = 0; i < obj[key].length; i++) {
+        if (obj[key][i].length % 2 === 1) {
+            oddWordsArr.push(obj[key][i]);
+        }
+    }
+    return oddWordsArr;
+}
+
+function getAverageOfElementsAtProperty(obj, key) {
+    if (!Array.isArray(obj[key]) || obj[key] === undefined ||
+        obj[key].length === 0) {
+        return 0;
+    }
+    let sum = 0;
+    for (let num of obj[key]) {
+        sum += num;
+    }
+    return sum / obj[key].length;
+}
+
+function getEvenLengthWordsAtProperty(obj, key) {
+    if (!Array.isArray(obj[key]) || obj[key] === undefined || obj[key].length === 0) {
+        return [];
+    }
+    const evenWordArr = [];
+    for (let word of obj[key]) {
+        if (word.length % 2 === 0) {
+            evenWordArr.push(word);
+        }
+    }
+    return evenWordArr;
+}
 
 // Objects 10
 
