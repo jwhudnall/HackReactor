@@ -281,5 +281,78 @@ function getEvenLengthWordsAtProperty(obj, key) {
 }
 
 // Objects 10
+function getSquaredElementsAtProperty(obj, key) {
+    if (obj[key] === undefined || !Array.isArray(obj[key]) || obj[key].length === 0) {
+        return [];
+    }
+    const squaredElements = obj[key].map(x => x ** 2);
+    return squaredElements;
+}
+
+function getOddElementsAtProperty(obj, key) {
+    if (obj[key] === undefined || !Array.isArray(obj[key]) ||
+        obj[key].length === 0) {
+        return [];
+    }
+    const array = obj[key];
+    const oddElementArr = array.filter(x => x % 2 === 1);
+    return oddElementArr;
+}
+
+function getEvenElementsAtProperty(obj, key) {
+    if (obj[key] === undefined || !Array.isArray(obj[key]) ||
+        obj[key].length === 0) {
+        return [];
+    }
+    // Filters property array, leaving even numbers
+    return obj[key].filter(x => x % 2 === 0);
+}
 
 // Objects 11
+function getSmallestElementAtProperty(obj, key) {
+    if (obj[key] === undefined || !Array.isArray(obj[key]) ||
+        obj[key].length === 0) {
+        return undefined;
+    }
+    let max = +Infinity;
+    for (num of obj[key]) {
+        if (num < max) {
+            max = num;
+        }
+    }
+    return max;
+}
+
+function getLargestElementAtProperty(obj, key) {
+    if (obj[key] === undefined
+        || !Array.isArray(obj[key])
+        || obj[key].length === 0) {
+        return undefined;
+    }
+    let max = -Infinity;
+    for (let num of obj[key]) {
+        if (num > max) {
+            max = num;
+        }
+    }
+    return max;
+}
+
+function getAllButLastElementOfProperty(obj, key) {
+    if (obj[key] === undefined
+        || !Array.isArray(obj[key])
+        || obj[key].length === 0) {
+        return [];
+    }
+    const arrLength = obj[key].length;
+    return obj[key].slice(0, arrLength - 1);
+}
+
+function getElementOfArrayProperty(obj, key, index) {
+    if(obj[key] === undefined
+      || !Array.isArray(obj[key])
+      || obj[key].length == 0) {
+          return undefined;
+      }
+      return obj[key][index];
+  }
