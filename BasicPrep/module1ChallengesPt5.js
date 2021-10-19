@@ -107,3 +107,33 @@ function getLongestWordOfMixedElements(arr) {
     return longestWord;
 }
 
+function getLargestNumberAmongMixedElements(arr) {
+    if (arr.length === 0) {
+        return 0;
+    }
+    const numArr = [];
+    for (let el of arr) {
+        if (typeof el === 'number') {
+            numArr.push(el);
+        }
+    }
+    if (numArr.length === 0) {
+        return 0;
+    }
+    let max = numArr[0];
+    for (let i = 1; i < numArr.length; i++) {
+        if (numArr[i] > max) {
+            max = numArr[i];
+        }
+    }
+    return max;
+}
+
+// Iteration 3
+function computeSummationToN(n) {
+    let total = 0;
+    for(let i = 1; i <= n; i++) {
+        total += i;
+    }
+    return total;
+  }
