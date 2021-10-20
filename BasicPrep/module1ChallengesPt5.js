@@ -240,3 +240,22 @@ function modulo(num1, num2) {
         return Math.abs(remainder);
     }
 }
+
+// Advanced 6 ** Revised Solution **
+function modulo(num1, num2) {
+    if (isNaN(num1) || isNaN(num2) || (typeof num1 === 'number' && num2 === 0)) {
+        return NaN;
+    } else if (num1 === 0 && typeof num2 === 'number') {
+        return 0;
+    }
+    // Ternary: condition ? exprIfTrue : exprIfFalse
+    let isNegative = true ? num1 < 0 : false;
+    num1 = Math.abs(num1);
+    num2 = Math.abs(num2);
+
+    while (num1 >= num2) {
+        num1 = num1 - num2;
+    }
+    const result = isNegative ? parseInt(`-${num1}`) : num1;
+    return result;
+}
