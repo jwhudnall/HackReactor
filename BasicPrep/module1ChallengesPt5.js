@@ -210,3 +210,33 @@ function repeatString(string, num) {
     }
     return finalStr;
 }
+
+// Math 6
+function computeCompoundInterest(principal, interestRate, compoundingFrequency, timeInYears) {
+    const total = principal * (1 + interestRate / compoundingFrequency) ** (compoundingFrequency * timeInYears);
+    return total - principal;
+}
+
+// Advanced 6
+function modulo(num1, num2) {
+    if (typeof num1 === NaN || typeof num2 === NaN) {
+        return NaN;
+    } else if (typeof num1 === 'number' && num2 === 0) {
+        return NaN;
+    } else if (num1 === 0 && typeof num2 === 'number') {
+        return 0;
+    }
+    let isNegative = false;;
+    if (num1 < 0) {
+        isNegative = true;
+    }
+    let intVal = Math.floor(Math.abs(num1) / Math.abs(num2));
+    let remainder = Math.abs(num1) - (intVal * Math.abs(num2));
+
+    if (isNegative) {
+        const valueStr = `-${remainder}`;
+        return parseInt(valueStr);
+    } else {
+        return Math.abs(remainder);
+    }
+}
