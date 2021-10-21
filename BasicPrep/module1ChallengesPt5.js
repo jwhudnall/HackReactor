@@ -284,3 +284,24 @@ function isOddWithoutModulo(num) {
     return num === 1 ? true : false;
 }
 
+// Advanced 8
+function isEvenWithoutModulo(num) {
+    num = Math.abs(num);
+    while (num >= 2) {
+        num -= 2;
+    }
+    return num === 0 ? true : false;
+}
+
+// Iteration 6
+function multiplyBetween(num1, num2) {
+    if (num2 < num1 || num1 === num2) {
+        return 0
+    }
+    let total = 1;
+    while (num2 > num1) {
+        total *= num1;
+        num1++;
+    }
+    return total;
+}
