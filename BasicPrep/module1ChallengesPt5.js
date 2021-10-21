@@ -259,3 +259,28 @@ function modulo(num1, num2) {
     const result = isNegative ? parseInt(`-${num1}`) : num1;
     return result;
 }
+
+// Iteration 5
+function multiply(num1, num2) {
+    let product = 0;
+    // Ternary: condition ? exprIfTrue : exprIfFalse
+    const isNegative = num1 < 0 && num2 > 0 || num1 > 0 && num2 < 0 ?
+        true : false;
+    num1 = Math.abs(num1);
+    num2 = Math.abs(num2);
+
+    for (i = 1; i <= num2; i++) {
+        product += num1;
+    }
+    return isNegative ? -product : product;
+}
+
+// Advanced 7
+function isOddWithoutModulo(num) {
+    num = Math.abs(num)
+    while (num >= 2) {
+        num -= 2;
+    }
+    return num === 1 ? true : false;
+}
+
