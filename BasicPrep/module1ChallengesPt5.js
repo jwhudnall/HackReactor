@@ -305,3 +305,15 @@ function multiplyBetween(num1, num2) {
     }
     return total;
 }
+
+function computeSumBetween(num1, num2) {
+    if (num2 < num1 || num2 === num1) {
+        return 0;
+    }
+    let total = 0;
+    while (num2 > num1) {
+        total += num1;
+        num1++;
+    }
+    return total;
+}
