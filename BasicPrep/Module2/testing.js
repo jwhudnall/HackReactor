@@ -41,9 +41,30 @@ function assertObjectsEqual(actual, expected, testName) {
 // assertWithinRange
 function assertWithinRange(low, high, actual, testName) {
     const withinRange = actual >= low && actual <= high;
-    if(withinRange) {
+    if (withinRange) {
         console.log('passed');
     } else {
         console.log(`FAIL [${testName}] "${actual}" not within range ${low} to ${high}`);
     }
-  }
+}
+
+// Clean Code Sample Testing
+function addOne(val) {
+    return val + 1;
+}
+
+function assert(condition, testName) {
+    if (condition) {
+        console.log('passed');
+    } else {
+        console.log(`FAILED ["${testName}"]`);
+    }
+}
+
+// Test Suite
+let result1 = addOne(2);
+let result2 = addOne(-2);
+
+assert(result1 === 3, "Should return result of a positive number added to 1");
+assert(result2 === -1, "Should return result of a negative number added to 1");
+
