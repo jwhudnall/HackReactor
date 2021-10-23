@@ -68,3 +68,60 @@ let result2 = addOne(-2);
 assert(result1 === 3, "Should return result of a positive number added to 1");
 assert(result2 === -1, "Should return result of a negative number added to 1");
 
+// ** Applying assertEqual 1 **
+// FUNCTION DEFINITION(S)
+function square(n) {
+    return n * n;
+  }
+  
+  // ASSERTION FUNCTION(S) TO BE USED
+  function assertEqual(condition, message) {
+    if(condition) {
+      console.log('passed');
+    } else {
+      console.log(`FAILED ["${condition}"]. ${message}`);
+    }
+  }
+  
+  // TESTS CASES
+  
+  assertEqual(square(4) === 16, "Squaring a positive value should result in value * value");
+  assertEqual(square(-4) === 16, "Squaring a negative value should result in value * value");
+
+  // ** Applying assertEqual 2 **
+  // Note: This is a simple, albeit temporarily incorrect implementation of the standard Array method "every()":
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+
+// FUNCTION DEFINITION(S)
+function every(array, callbackFunction) {
+    var doesEveryElementMatch = true;
+  
+    for (var i = 0; i < array.length; i++) {
+      doesEveryElementMatch = callbackFunction(array[i]);
+      if(!doesEveryElementMatch) {
+        return doesEveryElementMatch;
+      }
+    }
+  
+    return doesEveryElementMatch;
+  }
+  
+  // ASSERTION FUNCTION(S) TO BE USED
+  function assertEqual(actual, expected, testName) {
+    if(actual === expected) {
+      console.log('passed');
+    } else {
+      console.log(`FAILED [${testName}]. Expected: ${expected}. Actual: ${actual}`);
+    }
+  }
+  
+  // TESTS CASES
+  function lessThan10(num) {
+    return num < 10;
+  }
+  
+  const trueArray = [1,6,4,2,1];
+  const falseArray = [1,10,4,1];
+  
+  assertEqual(every(trueArray, lessThan10), true, 'Should be true');
+  assertEqual(every(falseArray, lessThan10), false, 'Should be false');
