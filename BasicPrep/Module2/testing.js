@@ -37,3 +37,13 @@ function assertObjectsEqual(actual, expected, testName) {
         console.log(`FAILED [${testName}] Expected ${jsonExpected}, but got ${jsonActual}`)
     }
 }
+
+// assertWithinRange
+function assertWithinRange(low, high, actual, testName) {
+    const withinRange = actual >= low && actual <= high;
+    if(withinRange) {
+        console.log('passed');
+    } else {
+        console.log(`FAIL [${testName}] "${actual}" not within range ${low} to ${high}`);
+    }
+  }
