@@ -51,3 +51,54 @@ const test3ArrInput = [-2, -2, 2, 2, 5];
 const test3ArrOutput = average(test3ArrInput);
 const test3Expected = 1;
 assertEqual(test3Expected, test3ArrOutput, "Should take the average of positive and negative numbers");
+
+// ** Decorate a Student List **
+// FUNCTION DEFINITION(S)
+
+// USE THIS FUNCTION TO GENERATE A RANDOM NUMBER
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  
+  function decorateClassListWithAges(classList) {
+    const studentArr = [];
+    // creates an object for each string in the input array, with an age of 10 or 11
+    for(let name of classList) {
+      const studentObj = {name: name, age: getRandomIntInclusive(10,11)};
+      // Add object 
+      studentArr.push(studentObj);
+    }
+    // returns an array of these objects
+    return studentArr;
+  }
+  
+  // ASSERTION FUNCTION(S) TO BE USED
+  function assertWithinRange(low, high, actual) {
+      return low <= actual && high >= actual;
+  }
+  
+  function testPopulateStudentList(inputArr, outputObj) {
+      for(let i = 0; i < inputArr.length; i++) {
+          if(inputArr[i] !== outputObj[i].name) {
+              // end function & log failure message
+              console.log(`FAILED: Incorrect name at index: ${i}`);
+              return;
+          }
+          if(!assertWithinRange(10,11,outputObj[i].age)) {
+              // end function & log failure message
+              console.log(`FAILED: Incorrect age at index: ${i}`);
+          }
+      }
+      console.log('passed');
+      return;
+  }
+  
+  // TESTS CASES
+  const classList1 = ["Joe", "Jack", "John", "Fred", "Frank", "Barry", "Larry", "Mary",
+  "Harry", "Farrell", "Susan", "Monica", "Keira", "Caroline", "Harriet", "Erica",
+  "Luann", "Cheryl", "Beth", "Rupa", "Linda", "Allison", "Nancy", "Dora"];
+  
+  const classListWithAges1 = decorateClassListWithAges(classList1);
+  testPopulateStudentList(classList1, classListWithAges1);  
