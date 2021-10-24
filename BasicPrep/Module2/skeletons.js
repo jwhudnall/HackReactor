@@ -132,13 +132,13 @@ function isIsogram(text) {
     // note: a set drops dup values
     // thus, to see if all the chars were unique,
     const letterSet = new Set();
-    for(let letter of text) {
+    for (let letter of text) {
         letter = letter.toLowerCase();
         letterSet.add(letter);
     }
     // check length of text and the size of the set
     return text.length === letterSet.size;
-  }
+}
 
 // Test Function(s)
 function assertIsogram(expected, actual, testName) {
@@ -157,3 +157,66 @@ assertIsogram(true, result1, 'Correctly identifies an Isogram');
 const false1 = 'racecar';
 const result2 = isIsogram(false1);
 assertIsogram(false, result2, 'Correctly returns false if not an Isogram');
+
+// ** Interpret a Skeleton **
+// Skeleton
+
+// FUNCTION DEFINITION(S)
+function findMaxRepeatCountInWord(word) {
+    // Break up individual word into individual letters.
+    const wordArr = word.split('');
+    // Count the instances of each letter
+    const counts = {};
+    for (let letter of wordArr) {
+        if (counts[letter] === undefined) {
+            counts[letter] = 1;
+        } else {
+            counts[letter]++;
+        }
+    }
+    // Iterate all the counts and find the highest
+    let maxCount = 0;
+    // Return this word's max repeat count
+    for (let key in counts) {
+        if (counts[key] > maxCount) {
+            maxCount = counts[key];
+        }
+    }
+    return maxCount;
+}
+
+function findFirstWordWithMostRepeatedChars(text) {
+    var maxRepeatCountOverall = 0;
+    var wordWithMaxRepeatCount = '';
+
+    // Break up input text into words (space-delimited).
+    const wordArr = text.split(' ');
+    // For each word...
+    for (let i = 0; i < wordArr.length; i++) {
+        const word = wordArr[i];
+        const repeatCountForWord = findMaxRepeatCountInWord(word);
+        // If that max repeat count is higher than the overall max repeat count, then
+        if (repeatCountForWord > maxRepeatCountOverall) {
+            // update maxRepeatCountOverall
+            maxRepeatCountOverall = repeatCountForWord;
+            wordWithMaxRepeatCount = word;
+            // update wordWithMaxRepeatCount
+        }
+    }
+    return wordWithMaxRepeatCount;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertEqual(expected, actual, testName) {
+    if (expected === actual) {
+        console.log('passed');
+    } else {
+        console.log(`FAILED ["${testName}"] Expected: ${expected} vs Actual: ${actual}`);
+    }
+}
+
+// TESTS CASES
+const sample1Text = "This raacea is fast";
+const sample1Solution = findFirstWordWithMostRepeatedChars(sample1Text);
+assertEqual('raacea', sample1Solution, "Correctly identifies word with most repeated characters");
+
