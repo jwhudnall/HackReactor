@@ -125,3 +125,45 @@ function every(array, callbackFunction) {
   
   assertEqual(every(trueArray, lessThan10), true, 'Should be true');
   assertEqual(every(falseArray, lessThan10), false, 'Should be false');
+
+  // ** Applying assertArraysEqual **
+  // FUNCTION DEFINITION(S)
+function map(array, callbackFunction) {
+    var newArray = [];
+  
+    for (var i = 0; i < array.length; i++) {
+      const element = array[i];
+      newArray.push(callbackFunction(element));
+    }
+    return newArray;
+  }
+  
+  function cubeAll(numbers) {
+    return map(numbers, function(n) {
+      return n ** 3;
+    });
+  }
+  
+  // ASSERTION FUNCTION(S) TO BE USED
+  
+  function assertArraysEqual(actual, expected, testName) {
+      const equalLength = actual.length === expected.length;
+      let equalArr;
+      for(let i = 0; i < actual.length; i++) {
+          if( actual[i] !== expected[i]) {
+              equalArr = false;
+              break;
+          } else {
+              equalArr = true;
+          }
+      }
+      if(equalLength && equalArr) {
+          return 'passed';
+      } else {
+          console.log(`FAILED [${testName}]. Expected: ${expected}. Actual: ${actual}`);
+      }
+  }
+  
+  // TESTS CASES
+  assertArraysEqual(cubeAll([1,2,3,4]), [1, 8, 27, 64], 'Cube Numbers');
+  assertArraysEqual(cubeAll([-1,-2,-3,-4]), [-1, -8, -27, -64], 'Cube Numbers');
