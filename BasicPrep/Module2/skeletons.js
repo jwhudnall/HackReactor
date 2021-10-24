@@ -60,45 +60,100 @@ function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  
-  function decorateClassListWithAges(classList) {
+}
+
+function decorateClassListWithAges(classList) {
     const studentArr = [];
     // creates an object for each string in the input array, with an age of 10 or 11
-    for(let name of classList) {
-      const studentObj = {name: name, age: getRandomIntInclusive(10,11)};
-      // Add object 
-      studentArr.push(studentObj);
+    for (let name of classList) {
+        const studentObj = { name: name, age: getRandomIntInclusive(10, 11) };
+        // Add object 
+        studentArr.push(studentObj);
     }
     // returns an array of these objects
     return studentArr;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertWithinRange(low, high, actual) {
+    return low <= actual && high >= actual;
+}
+
+function testPopulateStudentList(inputArr, outputObj) {
+    for (let i = 0; i < inputArr.length; i++) {
+        if (inputArr[i] !== outputObj[i].name) {
+            // end function & log failure message
+            console.log(`FAILED: Incorrect name at index: ${i}`);
+            return;
+        }
+        if (!assertWithinRange(10, 11, outputObj[i].age)) {
+            // end function & log failure message
+            console.log(`FAILED: Incorrect age at index: ${i}`);
+        }
+    }
+    console.log('passed');
+    return;
+}
+
+// TESTS CASES
+const classList1 = ["Joe", "Jack", "John", "Fred", "Frank", "Barry", "Larry", "Mary",
+    "Harry", "Farrell", "Susan", "Monica", "Keira", "Caroline", "Harriet", "Erica",
+    "Luann", "Cheryl", "Beth", "Rupa", "Linda", "Allison", "Nancy", "Dora"];
+
+const classListWithAges1 = decorateClassListWithAges(classList1);
+testPopulateStudentList(classList1, classListWithAges1);
+
+// ** Isograms **
+
+/* Directions: An isogram is a word that has no repeating letters, 
+consecutive or non-consecutive. Your task is to write and test 
+a function that determines whether a string is an isogram, following 
+the format of the previous problems. It should return true if the 
+input string is an isogram, and should return false otherwise. */
+
+// Original Solution:
+function isIsogram(text) {
+    const usedLetters = [];
+    for (let i = 0; i < text.length; i++) {
+        const letter = text[i].toLowerCase();
+        if (usedLetters.indexOf(letter) !== -1) {
+            return false;
+        } else {
+            usedLetters.push(letter);
+        }
+    }
+    return true;
+}
+
+// SOLUTION FOLLOWING SKELETON CODE:
+function isIsogram(text) {
+    // add each char to a set
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+    // note: a set drops dup values
+    // thus, to see if all the chars were unique,
+    const letterSet = new Set();
+    for(let letter of text) {
+        letter = letter.toLowerCase();
+        letterSet.add(letter);
+    }
+    // check length of text and the size of the set
+    return text.length === letterSet.size;
   }
-  
-  // ASSERTION FUNCTION(S) TO BE USED
-  function assertWithinRange(low, high, actual) {
-      return low <= actual && high >= actual;
-  }
-  
-  function testPopulateStudentList(inputArr, outputObj) {
-      for(let i = 0; i < inputArr.length; i++) {
-          if(inputArr[i] !== outputObj[i].name) {
-              // end function & log failure message
-              console.log(`FAILED: Incorrect name at index: ${i}`);
-              return;
-          }
-          if(!assertWithinRange(10,11,outputObj[i].age)) {
-              // end function & log failure message
-              console.log(`FAILED: Incorrect age at index: ${i}`);
-          }
-      }
-      console.log('passed');
-      return;
-  }
-  
-  // TESTS CASES
-  const classList1 = ["Joe", "Jack", "John", "Fred", "Frank", "Barry", "Larry", "Mary",
-  "Harry", "Farrell", "Susan", "Monica", "Keira", "Caroline", "Harriet", "Erica",
-  "Luann", "Cheryl", "Beth", "Rupa", "Linda", "Allison", "Nancy", "Dora"];
-  
-  const classListWithAges1 = decorateClassListWithAges(classList1);
-  testPopulateStudentList(classList1, classListWithAges1);  
+
+// Test Function(s)
+function assertIsogram(expected, actual, testName) {
+    if (expected === actual) {
+        console.log('passed');
+    } else {
+        console.log(`FAILED ["${testName}"] Expected: ${expected} vs Actual: ${actual}`);
+    }
+}
+
+// Tests
+const true1 = 'race';
+const result1 = isIsogram(true1);
+assertIsogram(true, result1, 'Correctly identifies an Isogram');
+
+const false1 = 'racecar';
+const result2 = isIsogram(false1);
+assertIsogram(false, result2, 'Correctly returns false if not an Isogram');
