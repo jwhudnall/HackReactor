@@ -220,3 +220,56 @@ const sample1Text = "This raacea is fast";
 const sample1Solution = findFirstWordWithMostRepeatedChars(sample1Text);
 assertEqual('raacea', sample1Solution, "Correctly identifies word with most repeated characters");
 
+/* ** Render Phone Number Exercise **
+Your code should accept an array of numbers that represent a phone number. 
+E.g., [6, 5, 0, 8, 3, 5, 9, 1, 7, 2]. You code should return a string in this format: '(650) 835-9172'.*/
+
+// Skeleton
+// FUNCTION DEFINITION(S)
+function PhoneNumberFormatter(numbers) {
+    this.numbers = numbers;
+  }
+  
+  PhoneNumberFormatter.prototype.render = function() {
+    const areaCode = this.parenthesize(this.getAreaCode());
+    var string = `${areaCode} ${this.getExchangeCode()}-${this.getLineNumber()}`;
+    return string;
+  };
+  
+  PhoneNumberFormatter.prototype.getAreaCode = function() {
+    // your code here
+    return this.slice(0,3);
+  };
+  
+  PhoneNumberFormatter.prototype.getExchangeCode = function() {
+    // your code here
+    return this.slice(3,6);
+  };
+  
+  PhoneNumberFormatter.prototype.getLineNumber = function() {
+    // your code here
+    return this.slice(6,10);
+  };
+  
+  PhoneNumberFormatter.prototype.parenthesize = function(string) {
+    return '(' + string + ')';
+  };
+  
+  PhoneNumberFormatter.prototype.slice = function(start, end) {
+    return this.numbers.slice(start, end).join('');
+  };
+  
+  // ASSERTION FUNCTION(S) TO BE USED
+  function assertEqual(expected, actual, testName) {
+    if(expected === actual) {
+      console.log(`Passed Test: ${testName}`);
+    } else {
+      console.log(`FAILED Test: ${testName}. Expected: ${expected} vs Actual: ${actual}`);
+    }
+  }
+  
+  // TESTS CASES
+  let phoneTest1 = new PhoneNumberFormatter([6,3,0,5,2,8,7,2,7,3]);
+  const test1Actual = phoneTest1.render();
+  const test1Expected = '(630) 528-7273';
+  assertEqual(test1Expected, test1Actual, 'Should render in correct format');
