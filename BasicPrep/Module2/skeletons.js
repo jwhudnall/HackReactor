@@ -273,3 +273,89 @@ function PhoneNumberFormatter(numbers) {
   const test1Actual = phoneTest1.render();
   const test1Expected = '(630) 528-7273';
   assertEqual(test1Expected, test1Actual, 'Should render in correct format');
+
+  // ** Find Longest Palindrome **
+  /* Write a function that will find the longest single-word palindrome 
+  within an input phrase (string). The phrase inputted will only contain 
+  letters (no symbols, punctuation, or numbers). Your palindrome detection 
+  should be case-insensitive. If there are multiple palindromes of equal 
+  length, return the last one. */
+
+// Skeleton
+
+// FUNCTION DEFINITION(S)
+function findLongestPalindrome(sentence) {
+    const sentenceArr = sentence.split(" ");
+    const palindromeArr = [];
+    let longestPalindrome = '';
+    for(let word of sentenceArr) {
+      if(isPalindrome(word)) {
+          palindromeArr.push(word);
+      }
+    }
+  // sort the list of palindromes by word length
+  for(let palindrome of palindromeArr) {
+      if(sortAscendingByLength(palindrome, longestPalindrome) === 1 ||
+        sortAscendingByLength(palindrome, longestPalindrome) === 0) {
+          longestPalindrome = palindrome;
+      }
+  }
+  // return the largest item in the sorted list
+  return longestPalindrome;
+}
+
+
+function reverseString(string) {
+    let reversedStr = '';
+    for(let i = string.length-1; i >= 0; i--) {
+        reversedStr+= string[i];
+    }
+    return reversedStr;
+}
+
+function isPalindrome(word) {
+  word = word.toLowerCase();
+  return word === reverseString(word);
+}
+
+function sortAscendingByLength(a, b) {
+  if (a.length > b.length) {
+    return 1;
+  } else if (a.length < b.length) {
+    return -1;
+  }
+  return 0;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertEqual(expected, actual, testName) {
+    if(expected === actual) {
+        console.log('passed');
+    }
+    else {
+        console.log(`FAILED [${testName}]. Expected: ${expected} vs Actual: ${actual}`);
+    }
+}
+
+// TESTS CASES
+// Test reverseString:
+let word1 = 'patio';
+let expected1 = 'oitap';
+let result1 = reverseString(word1);
+assertEqual(expected1, result1, "Correctly reverses a string");
+
+// Test isPalindrome:
+let word2 = 'racecar';
+let expected2 = true;
+let result2 = isPalindrome(word2);
+assertEqual(expected2, result2, 'Correctly classifies a Palindrome');
+
+let word3 = 'bananas';
+let expected3 = false;
+let result3 = isPalindrome(word3);
+assertEqual(expected3, result3, 'Correctly classifies a non-Palindrome');
+
+// Test findLongestPalindrome
+let inputSentence1 = "The RoTaToR went civic on that radar";
+let output1 = findLongestPalindrome(inputSentence1);
+assertEqual("RoTaToR", output1, "Correctly selects longest Palindrome from sentence");
