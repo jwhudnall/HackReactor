@@ -157,3 +157,61 @@ var currentInventory = [
 
 var actual1 = calculateAveragePricePerDesigner(currentInventory);
 assertObjectsEqual(expected1, actual1, "Both objects are equivalent strings");
+
+// ========= Part C =========
+function listAllBlackShoes(inventory) {
+  var flatList = '';
+  for(let i = 0; i < inventory.length; i++) {
+    const designer = inventory[i].name;
+    const shoes = inventory[i].shoes;
+    for(let shoe of shoes) {
+      const shoeName = shoe.name;
+      const shoePrice = shoe.price;
+      const render = `${designer}, ${shoeName}, ${shoePrice}\n`;
+      const targetPhrase = 'black'
+      if(containsWord(render, targetPhrase)) {
+        flatList+= render;
+      }
+    }
+  }
+  return flatList;
+}
+
+//Create helper functions if needed
+function containsWord(inputStr, word) {
+  return inputStr.indexOf(word) !== -1;
+}
+
+// Assert Functions
+function assertEqual(expected, actual, testName) {
+  if(expected === actual) {
+    console.log('passed');
+  } else {
+    console.log(`FAILED ["${testName}"]. Expected: ${expected} vs. Actual: ${actual}`);
+  }
+}
+
+// Test Suite
+var currentInventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      {name: 'tasselled black low-top lace-up', price: 1000},
+      {name: 'tasselled green low-top lace-up', price: 1100},
+      {name: 'plain beige suede moccasin', price: 950},
+      {name: 'plain olive suede moccasin', price: 1050}
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      {name: 'red leather laced sneakers', price: 800},
+      {name: 'black leather laced sneakers', price: 900}
+    ]
+  }
+];
+
+let actual1 = listAllBlackShoes(currentInventory);
+let expected = 'Brunello Cucinelli, tasselled black low-top lace-up, 1000\nGucci, black leather laced sneakers, 900\n';
+
+assertEqual(expected, actual1, 'Correctly parses items with target phrase');
