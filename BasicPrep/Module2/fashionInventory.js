@@ -21,53 +21,139 @@ about the return values and stipulations of the functions you are asked to write
 // ========= Part A =========
 
 function renderInventory(inventory) {
-    var flatList = '';
-    // iterate through outer array (contains objects)
-    for(let i = 0; i < inventory.length; i++) {
-      var designer = inventory[i].name;
-      var shoes = inventory[i].shoes;
-      for(let shoe of shoes) {
-        var shoeName = shoe.name;
-        var shoePrice = shoe.price;
-        var shoeRender = designer + ", " + shoeName + ", " + shoePrice + "\n";
-        flatList += shoeRender;  
-      }
-    }
-    return flatList;
-  }
-  
-  
-  // Test Functions
-  function assertEqual(expected, actual, testName) {
-    if(expected === actual) {
-      console.log('passed');
-    } else {
-      console.log(`FAILED ["${testName}"]. Expected: ${expected} vs Actual: ${actual}`)
+  var flatList = '';
+  // iterate through outer array (contains objects)
+  for (let i = 0; i < inventory.length; i++) {
+    var designer = inventory[i].name;
+    var shoes = inventory[i].shoes;
+    for (let shoe of shoes) {
+      var shoeName = shoe.name;
+      var shoePrice = shoe.price;
+      var shoeRender = designer + ", " + shoeName + ", " + shoePrice + "\n";
+      flatList += shoeRender;
     }
   }
-  
-  // Test Suite
-  var currentInventory = [
+  return flatList;
+}
+
+
+// Test Functions
+function assertEqual(expected, actual, testName) {
+  if (expected === actual) {
+    console.log('passed');
+  } else {
+    console.log(`FAILED ["${testName}"]. Expected: ${expected} vs Actual: ${actual}`)
+  }
+}
+
+// Test Suite
+var currentInventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      { name: 'tasselled black low-top lace-up', price: 1000 },
+      { name: 'tasselled green low-top lace-up', price: 1100 },
+      { name: 'plain beige suede moccasin', price: 950 },
+      { name: 'plain olive suede moccasin', price: 1050 }
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      { name: 'red leather laced sneakers', price: 800 },
+      { name: 'black leather laced sneakers', price: 900 }
+    ]
+  }
+];
+
+let expected1 = 'Brunello Cucinelli, tasselled black low-top lace-up, 1000\nBrunello Cucinelli, tasselled green low-top lace-up, 1100\nBrunello Cucinelli, plain beige suede moccasin, 950\nBrunello Cucinelli, plain olive suede moccasin, 1050\nGucci, red leather laced sneakers, 800\nGucci, black leather laced sneakers, 900\n';
+
+let actual1 = renderInventory(currentInventory);
+
+assertEqual(expected1, actual1, "Correctly displays items in specified format");
+
+/* ========= Part B =========
+Your function should return the average cost of all shoes per designer in this format:
+
+var expected = {
+'designers': [
+  {
+    'name': 'Brunello Cucinelli',
+    'averagePrice': 1025
+  },
+  {
+    'name': 'Gucci',
+    'averagePrice': 850
+  }
+]
+};
+
+*/
+function calculateAveragePricePerDesigner(inventory) {
+  const averagePrices = { designers: [] };
+  for (let i = 0; i < inventory.length; i++) {
+    const designer = inventory[i].name;
+    const shoes = inventory[i].shoes;
+    let totalShoePrice = 0;
+
+    for (let j = 0; j < shoes.length; j++) {
+      const price = shoes[j].price;
+      totalShoePrice += price;
+    }
+    const averageShoePrice = totalShoePrice / shoes.length;
+    const averageDesignerWithPrice = {
+      name: designer,
+      averagePrice: averageShoePrice
+    };
+    averagePrices.designers.push(averageDesignerWithPrice);
+  }
+  return averagePrices;
+}
+
+// Assert Functions
+function assertObjectsEqual(expected, actual, testName) {
+  const expectedJSON = JSON.stringify(expected);
+  const actualJSON = JSON.stringify(actual);
+  if (expectedJSON === actualJSON) {
+    console.log('passed');
+  } else {
+    console.log(`FAILED ["${testName}"]. Expected: ${expected} vs. Actual: ${actual}`);
+  }
+}
+
+// Test Cases
+
+var expected1 = {
+  'designers': [
     {
-      name: 'Brunello Cucinelli',
-      shoes: [
-        {name: 'tasselled black low-top lace-up', price: 1000},
-        {name: 'tasselled green low-top lace-up', price: 1100},
-        {name: 'plain beige suede moccasin', price: 950},
-        {name: 'plain olive suede moccasin', price: 1050}
-      ]
+      'name': 'Brunello Cucinelli',
+      'averagePrice': 1025
     },
     {
-      name: 'Gucci',
-      shoes: [
-        {name: 'red leather laced sneakers', price: 800},
-        {name: 'black leather laced sneakers', price: 900}
-      ]
+      'name': 'Gucci',
+      'averagePrice': 850
     }
-  ];
-  
-  let expected1 = 'Brunello Cucinelli, tasselled black low-top lace-up, 1000\nBrunello Cucinelli, tasselled green low-top lace-up, 1100\nBrunello Cucinelli, plain beige suede moccasin, 950\nBrunello Cucinelli, plain olive suede moccasin, 1050\nGucci, red leather laced sneakers, 800\nGucci, black leather laced sneakers, 900\n';
-  
-  let actual1 = renderInventory(currentInventory);
-  
-  assertEqual(expected1, actual1, "Correctly displays items in specified format");
+  ]
+};
+
+var currentInventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      { name: 'tasselled black low-top lace-up', price: 1000 },
+      { name: 'tasselled green low-top lace-up', price: 1100 },
+      { name: 'plain beige suede moccasin', price: 950 },
+      { name: 'plain olive suede moccasin', price: 1050 }
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      { name: 'red leather laced sneakers', price: 800 },
+      { name: 'black leather laced sneakers', price: 900 }
+    ]
+  }
+];
+
+var actual1 = calculateAveragePricePerDesigner(currentInventory);
+assertObjectsEqual(expected1, actual1, "Both objects are equivalent strings");
