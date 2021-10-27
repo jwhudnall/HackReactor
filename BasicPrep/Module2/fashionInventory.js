@@ -161,16 +161,16 @@ assertObjectsEqual(expected1, actual1, "Both objects are equivalent strings");
 // ========= Part C =========
 function listAllBlackShoes(inventory) {
   var flatList = '';
-  for(let i = 0; i < inventory.length; i++) {
+  for (let i = 0; i < inventory.length; i++) {
     const designer = inventory[i].name;
     const shoes = inventory[i].shoes;
-    for(let shoe of shoes) {
+    for (let shoe of shoes) {
       const shoeName = shoe.name;
       const shoePrice = shoe.price;
       const render = `${designer}, ${shoeName}, ${shoePrice}\n`;
       const targetPhrase = 'black'
-      if(containsWord(render, targetPhrase)) {
-        flatList+= render;
+      if (containsWord(render, targetPhrase)) {
+        flatList += render;
       }
     }
   }
@@ -184,7 +184,7 @@ function containsWord(inputStr, word) {
 
 // Assert Functions
 function assertEqual(expected, actual, testName) {
-  if(expected === actual) {
+  if (expected === actual) {
     console.log('passed');
   } else {
     console.log(`FAILED ["${testName}"]. Expected: ${expected} vs. Actual: ${actual}`);
@@ -196,17 +196,17 @@ var currentInventory = [
   {
     name: 'Brunello Cucinelli',
     shoes: [
-      {name: 'tasselled black low-top lace-up', price: 1000},
-      {name: 'tasselled green low-top lace-up', price: 1100},
-      {name: 'plain beige suede moccasin', price: 950},
-      {name: 'plain olive suede moccasin', price: 1050}
+      { name: 'tasselled black low-top lace-up', price: 1000 },
+      { name: 'tasselled green low-top lace-up', price: 1100 },
+      { name: 'plain beige suede moccasin', price: 950 },
+      { name: 'plain olive suede moccasin', price: 1050 }
     ]
   },
   {
     name: 'Gucci',
     shoes: [
-      {name: 'red leather laced sneakers', price: 800},
-      {name: 'black leather laced sneakers', price: 900}
+      { name: 'red leather laced sneakers', price: 800 },
+      { name: 'black leather laced sneakers', price: 900 }
     ]
   }
 ];
@@ -215,3 +215,75 @@ let actual1 = listAllBlackShoes(currentInventory);
 let expected = 'Brunello Cucinelli, tasselled black low-top lace-up, 1000\nGucci, black leather laced sneakers, 900\n';
 
 assertEqual(expected, actual1, 'Correctly parses items with target phrase');
+
+// ========= Part D =========
+function generateLaceDetails(array) {
+  const targetWordResults = [];
+  const targetWord = 'lace';
+
+  for (let i = 0; i < array.length; i++) {
+    const designer = array[i].name;
+    const shoes = array[i].shoes;
+    for (let j = 0; j < shoes.length; j++) {
+      const shoeName = shoes[j].name;
+      if (containsWord(shoeName, targetWord)) {
+        const nameWordArr = shoeName.split(' ');
+        const wordIndex = returnIndex(nameWordArr, targetWord);
+        const shoeObj = {
+          nameWords: nameWordArr,
+          targetWordIndex: wordIndex
+        };
+        targetWordResults.push(shoeObj);
+      }
+    }
+  }
+  return targetWordResults;
+}
+
+function containsWord(inputStr, word) {
+  return inputStr.indexOf(word) !== -1;
+}
+
+function returnIndex(inputArr, word) {
+  for (let i = 0; i < inputArr.length; i++) {
+    if (inputArr[i].includes(word)) {
+      return i;
+    }
+  }
+}
+
+// Assert Functions
+function assertEqual(expected, actual, testName) {
+  if (expected === actual) {
+    console.log('passed');
+  } else {
+    console.log(`FAILED ["${testName}"]. Expected: ${expected} vs. Actual: ${actual}`);
+  }
+}
+
+
+// Test Suite
+var currentInventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      { name: 'tasselled black low-top lace-up', price: 1000 },
+      { name: 'tasselled green low-top lace-up', price: 1100 },
+      { name: 'plain beige suede moccasin', price: 950 },
+      { name: 'plain olive suede moccasin', price: 1050 }
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      { name: 'red leather laced sneakers', price: 800 },
+      { name: 'black leather laced sneakers', price: 900 }
+    ]
+  }
+];
+
+let phrase1 = 'long laced black boots';
+let targetWord1 = 'lace';
+let expected1 = true;
+let actual1 = containsWord(phrase1, targetWord1);
+assertEqual(expected1, actual1, "Correctly identifes target word");
