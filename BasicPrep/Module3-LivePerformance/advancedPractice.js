@@ -112,3 +112,50 @@ function validPrefix(str, prefixArr) {
     }
     return false;
 }
+
+/* 
+Create a new function that would filter all the members of an array based on a function 
+that will pass into this function as a parameter. The function will return a new array with 
+all members that meet the requirement of the function. For example you have a function that 
+takes a number as a parameter and returns whether or not that number is even. You need to 
+write a function called filter that will loop through all members of an array and return the 
+ones that are even.
+*/
+
+function filter(arr, fn) {
+    var newArr = [];
+    // iterate through arr
+    for (let i = 0; i < arr.length; i++) {
+        var value = arr[i];
+        if (fn(value)) {
+            newArr.push(value);
+        }
+    }
+    return newArr;
+}
+
+function isOdd(val) {
+    return val % 2 === 1;
+}
+
+function assertArrEqual(expected, actual, testName) {
+    var hasEqualLength = expected.length === actual.length;
+    if (!hasEqualLength) {
+        console.log('FAILED. Arrays have different lengths')
+        return;
+    }
+    for (let i = 0; i < expected.length; i++) {
+        if (expected[i] !== actual[i]) {
+            console.log(`FAILED [${testName}]. Expected Value: ${expected} not
+  equal to Actual Value: ${actual}`);
+            return;
+        }
+    }
+    console.log('passed');
+}
+
+// Tests
+var input1 = [1, 2, 3, 4, 5, 6, 7];
+var actual1 = filter(input1, isOdd);
+var expected1 = [1, 3, 5, 7];
+assertArrEqual(expected1, actual1, 'Correctly filters odd elements');
