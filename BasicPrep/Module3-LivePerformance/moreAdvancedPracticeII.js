@@ -65,5 +65,32 @@ function highestScoringWord(string) {
 
 
 /*
-===== Title =====
+===== Extract a Domain Name =====
+
+Write a function that when given a URL as a string, parses out just the domain name and 
+returns it as a string. For example:
+
+Input1: "http://github.com/carbonfive/raygun  " Output1: "github"
+Input2: "http://www.zombie-bites.com  " Output2: "zombie-bites"
+Input3: "https://www.cnet.com  " Output3: "cnet"
 */
+
+function getDomain(url) {
+    let splitArr;
+    // if url includes www.
+    if (url.includes('www.')) {
+        splitArr = url.split('www.');
+    } else if (url.includes('://')) {
+        splitArr = url.split('://');
+    }
+    console.log(splitArr)
+    let target = splitArr[1];
+    let domain = '';
+    for (let i = 0; i < target.length; i++) {
+        if (target[i] === '.') {
+            return domain;
+        } else {
+            domain += target[i];
+        }
+    }
+}
