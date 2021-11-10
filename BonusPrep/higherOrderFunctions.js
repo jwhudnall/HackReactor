@@ -42,16 +42,21 @@ function reduce(array, callbackFunction, startingValue) {
 }
 
 // Default Parameters
-function constructPerson (name='Anonymous', age=0, hobbies=[]) {
+function constructPerson(name = 'Anonymous', age = 0, hobbies = []) {
     name = name;
     age = age;
     hobbies = hobbies;
-  
+
     const person = {
-      name: name,
-      age: age,
-      hobbies: hobbies
+        name: name,
+        age: age,
+        hobbies: hobbies
     }
-  
+
     return person
-  }
+}
+
+// Object Shorthand
+function constructPerson(name = 'Anonymous', age = 0, hobbies = []) {
+    return { name, age, hobbies };
+}
