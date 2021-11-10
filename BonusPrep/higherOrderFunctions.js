@@ -60,3 +60,31 @@ function constructPerson(name = 'Anonymous', age = 0, hobbies = []) {
 function constructPerson(name = 'Anonymous', age = 0, hobbies = []) {
     return { name, age, hobbies };
 }
+
+// Object Destructuring
+function playSong({ name, artist }) {
+    //const { name, artist } = song
+
+    return `Now playing ${name} by ${artist}!`
+}
+
+let song1 = {
+    length: 180,
+    name: 'Oh Baby Baby',
+    artist: 'Begees'
+}
+
+playSong(song1); // 'Now playing Oh Baby Baby by Begees'
+
+// Destructuring Objects with array values
+const artist = {
+    name: 'Eurythmics',
+    songs: ['Sweet Dreams', 'Here Comes the Rain Again']
+}
+
+function playArtist(artistObj) {
+    const { name, songs: [first, second] } = artistObj;
+    console.log(`Name: ${name}, song1: ${first}, song2: ${second}`);
+}
+
+playArtist(artist); // Name: Eurythmics, song1: Sweet Dreams, song2: Here Comes the Rain Again
