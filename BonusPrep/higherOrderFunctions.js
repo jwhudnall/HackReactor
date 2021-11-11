@@ -88,3 +88,14 @@ function playArtist(artistObj) {
 }
 
 playArtist(artist); // Name: Eurythmics, song1: Sweet Dreams, song2: Here Comes the Rain Again
+
+
+
+// REST collects arguments of any length
+function multiply (...nums) {
+    if(nums.length === 0) {
+      return 0;
+    }
+    return nums.reduce((total, next) => total * next, 1);
+  }
+  
