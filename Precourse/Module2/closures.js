@@ -5,13 +5,26 @@ var makeStopwatch = function() {
   };
   var increase = function() { elapsed++ };
   setInterval(increase, 1000);
+  console.log(stopwatch);
   return stopwatch;
 }
 
+var stopwatches = [];
+
 var stopwatch1 = makeStopwatch();
+stopwatches.push(stopwatch1);
 
-// Run the following code in the terminal a few seconds later:
-// var stopwatch2 = makeStopwatch();
+setTimeout(function() {
+  var stopwatch2 = makeStopwatch();
+  stopwatches.push(stopwatch2);
+}
+, 4000)
 
-// stopwatch1(); // returns elapsed value that belongs to the execution context in which it was called
-// stopwatch2(); // returns a DIFFERENT elapsed value, belonging to a DIFFERENT execution context
+// After 10 seconds, console should readout the status of all n stopwatches
+// within the stopwatches array
+setTimeout(function() {
+  for (var i = 0; i < stopwatches.length; i++) {
+    var currentWatch = stopwatches[i]();
+    console.log(`Stopwatch ${i+1}: ${currentWatch}`);
+  }
+}, 10000)
