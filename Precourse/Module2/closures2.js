@@ -5,7 +5,7 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
 
-_.delay = function(func, wait) {
+var delay = function(func, wait) {
   var args = Array.prototype.slice.call(arguments).slice(2);
 
   setTimeout(function() {
@@ -20,7 +20,8 @@ _.delay = function(func, wait) {
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result FOR THE GIVEN ARGUMENT and return that value
   // instead if possible.
-  _.memoize = function(func) {
+
+  var memoize = function(func) {
     var cache = {};
     var result;
 
@@ -37,3 +38,10 @@ _.delay = function(func, wait) {
       }
     };
   };
+
+  var add = function(a,b) {
+    var args = Array.prototype.call(arguments);
+    return args.reduce((acc, item) => acc + item);
+  }
+
+  let firstcall = add(3,4,5)
