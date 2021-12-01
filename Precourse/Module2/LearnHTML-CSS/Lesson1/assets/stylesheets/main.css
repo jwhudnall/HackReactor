@@ -210,6 +210,11 @@ a {
 .btn-alt {
   border: 1px solid #dfe2e5;
   padding: 10px 30px;
+  background-color: #62e2c6;
+}
+
+.btn-alt:hover {
+  background-color: #a6ddd1;
 }
 
 /*
