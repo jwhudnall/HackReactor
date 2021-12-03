@@ -1,0 +1,170 @@
+/* These CSS rules apply to the <html>, <body>, and <div id="app"> HTML elements in index.html */
+html, body, #app {
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Continue building out the CSS styling for your Twiddler app below! We got you started by
+providing a space for you to apply styles to your app's outermost HTML element - the #app itself. */
+
+#app {
+  background-color: #60a9ff;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  color: #016ff9;
+
+  font-family: 'Rouge Script', cursive;
+  font-size: 75px;
+  font-weight: normal;
+  line-height: 48px;
+  margin: 20px 50px;
+  padding: .5em 1em .1em;
+  text-align: center;
+  text-shadow: 1px 1px 2px #082b34;
+}
+
+/* Main Content */
+#content {
+  display: flex;
+}
+
+#left-content {
+  margin-left: 10px;
+}
+
+#center-content {
+  width: 600px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/* New Tweet Form */
+.new-tweet-container {
+  width: 550px;
+  margin: 10px auto;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+label {
+  font-size: .8em;
+  margin: 0 5px;
+}
+
+/* Friends List */
+.fl-container {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  margin-left: 25px;
+}
+
+#friends-list {
+  padding: 0;
+  margin: 0;
+}
+
+li.friend {
+  display: flex;
+  list-style-type: none;
+}
+
+.friends-list-title {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+/* Tweet Feed */
+.tweet {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.tweet-user-info {
+  display: flex;
+}
+
+img.profile-photo {
+  border-radius: 50%;
+}
+
+span.username {
+  margin: 5px 5px;
+  font-size: .9em;
+}
+
+span.timestamp {
+  font-size: .7em;
+  margin: 5px 5px 5px auto;
+  font-style: italic;
+}
+
+.tweet-msg {
+  display: flex;
+  margin: -20px 64px 10px 64px;
+  margin-bottom: 10px;
+  margin-top: -20px;
+  font-size: 1.2em;
+  font-style: normal;
+  padding: .5em;
+  text-align: start;
+}
+
+.tweet-icons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px 0;
+}
+
+/* Buttons */
+#update-feed {
+  background-color: white;
+  width: 100%;
+  height: 2.5em;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+#update-feed:hover {
+  background-color: #e1e5e7;
+}
+
+.icon:hover {
+  color: #016ff9;
+}
+
+#submit-tweet {
+  background: #60a9ff;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 10px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+
+#submit-tweet:hover {
+  background-color: #016ff9;
+}
