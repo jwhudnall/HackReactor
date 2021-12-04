@@ -47,3 +47,22 @@ var rockPaperScissors2 = function(rounds) {
 var result = rockPaperScissors2(3);
 
 console.log(result);
+
+// Recursive Solution (standard method)
+var rockPaperScissors3 = function(roundsToGo, choicesSoFar=[]) {
+  var choices = ['rock', 'paper', 'scissors'];
+  var result = [];
+  // Base Case
+  if (roundsToGo === 0) {
+    result.push(choicesSoFar);
+    return result;
+  }
+  // Recursive case
+  choices.forEach(function(choice) {
+    result = result.concat(rockPaperScissors3(roundsToGo - 1, choicesSoFar.concat(choice)));
+  });
+
+  return result;
+};
+
+console.log(rockPaperScissors3(3));
