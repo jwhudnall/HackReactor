@@ -20,7 +20,10 @@ console.log(rockPaperScissors().length);
 
 // Recursive Solution (innerFunction method)
 var rockPaperScissors2 = function(rounds) {
-  // Declare result variable
+  // Handle edge case
+  if (rounds === 0) {
+    console.log('Don\'t do that!');
+  }
   var choices = ['rock', 'paper', 'scissors'];
   var result = [];
 
