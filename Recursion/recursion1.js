@@ -21,3 +21,22 @@ var flatten = function(input) {
 var input1 = [1, 2, [3, [[4]]], 5];
 var result1 = flatten(input1);
 console.log(`First Method Result: ${result1}`);
+
+
+
+// Recursion: "Regular" approach
+var flatten1 = function(input) {
+  var result = [];
+  if(!Array.isArray(input)) {
+    return input;
+  }
+  input.forEach(function(item) {
+    result = result.concat(flatten1(item));
+  });
+
+  return result;
+}
+
+var input2 = [1, 2, [3, [[4]]], 5];
+var result2 = flatten1(input1);
+console.log(result2);
