@@ -65,6 +65,44 @@
     });
   };
 
+  // *** _.uniq ***
+  // Original Solution:
+
+    // Produce a duplicate-free version of the array.
+    _.uniq = function (array, isSorted, iterator) {
+      // You can safely ignore the isSorted parameter in your solution!
+      // The isSorted parameter is only included for consistency with Underscore's
+      // version of uniq, and its functionality is not specifically tested here.
+
+      // The iterator specifies what _.uniq uses to decide if an item is a
+      // duplicate or not. _.uniq should use an item's transformed value, the result
+      // of invoking iterator on the item, to determine whether or not the original
+      // item is unique in the collection so far.
+
+      // If there is no defined iterator, _.uniq should default to use
+      // an item's original value to determine uniqueness.
+
+      var transformedValues = [];
+      var passingValues = [];
+
+      _.each(array, function (element) {
+        var includedInPassingValues = passingValues.includes(element);
+        if (typeof iterator === 'undefined' && !includedInPassingValues) {
+          passingValues.push(element);
+        } else if (typeof iterator === 'function') {
+          var transformedValue = iterator(element);
+          var includedInTransformedValues = transformedValues.includes(transformedValue);
+          if (!includedInTransformedValues) {
+            passingValues.push(element);
+            transformedValues.push(transformedValue);
+          }
+        }
+      });
+
+      return passingValues;
+    };
+
+
 
 
 }());
