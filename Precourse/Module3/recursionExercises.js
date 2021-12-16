@@ -13,3 +13,14 @@ var exponent = function(base, exp) {
 
   return base * exponent(base, exp - 1);
 };
+
+var powerOfTwo = function(n) {
+  if (n <= 1) {
+    if (n === 1) {
+      return true;
+    }
+    return false;
+  }
+
+  return powerOfTwo(n / 2);
+};
