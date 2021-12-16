@@ -1,4 +1,4 @@
-var exponent = function(base, exp) {
+var exponent = function (base, exp) {
   if (exp === 0) {
     return 1;
   }
@@ -14,7 +14,7 @@ var exponent = function(base, exp) {
   return base * exponent(base, exp - 1);
 };
 
-var powerOfTwo = function(n) {
+var powerOfTwo = function (n) {
   if (n <= 1) {
     if (n === 1) {
       return true;
@@ -26,10 +26,24 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that reverses a string.
-var reverse = function(string) {
-  var lastIdx = string.length -1;
+var reverse = function (string) {
+  var lastIdx = string.length - 1;
   if (string.length === 1) {
     return string[lastIdx];
   }
   return string[lastIdx] + reverse(string.slice(0, lastIdx));
+};
+
+// 10. Write a function that determines if a string is a palindrome.
+var palindrome = function (string) {
+  string = string.toLowerCase();
+
+  if (string.length < 2) {
+    return true;
+  }
+
+  if (string[0] === string[string.length - 1]) {
+    return palindrome(string.slice(1, string.length - 1));
+  }
+  return false;
 };
