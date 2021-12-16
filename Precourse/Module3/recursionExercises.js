@@ -24,3 +24,12 @@ var powerOfTwo = function(n) {
 
   return powerOfTwo(n / 2);
 };
+
+// 9. Write a function that reverses a string.
+var reverse = function(string) {
+  var lastIdx = string.length -1;
+  if (string.length === 1) {
+    return string[lastIdx];
+  }
+  return string[lastIdx] + reverse(string.slice(0, lastIdx));
+};
